@@ -1,0 +1,14 @@
+{
+  "name": "tani-shi-skills",
+  "owner": {
+    "name": "tani-shi"
+  },
+  "plugins": [
+    {
+      "name": "gogcli",
+      "source": "./plugins/gogcli",
+      "description": "Use the gog CLI to interact with Google Workspace services (Gmail, Calendar, Drive, Chat, Tasks, Classroom, Contacts)",
+      "version": "1.0.0"
+    }
+  ]
+}
