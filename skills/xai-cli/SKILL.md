@@ -1,0 +1,73 @@
+---
+name: xai-cli
+description: >
+  Use the `xai` CLI to search X (Twitter) posts, browse user timelines, retrieve threads,
+  discover trending topics, and perform web searches via the xAI API.
+  Trigger when the user asks to search X posts, view user timelines, read threads,
+  check trending topics, or perform web searches through xAI.
+  Also trigger when the user mentions "xai", "xai-cli", "X posts", "Twitter",
+  "trending on X", or similar terms in the context of performing actions.
+---
+
+# xai-cli — X (Twitter) & Web Search CLI
+
+Use the `xai` command to search and browse X (Twitter) content and the web via the xAI API.
+
+## Repository
+
+<https://github.com/tani-shi/xai-cli>
+
+## Installation
+
+```bash
+uv tool install .
+```
+
+## Prerequisites
+
+- `XAI_API_KEY` environment variable must be set
+- Run `xai config init` to set up configuration
+
+## Output formats
+
+- Default: human-readable text
+- `--format json` — JSON output (use for parsing structured data)
+- `--format markdown` — Markdown formatted output
+
+## Common flags
+
+- `--model MODEL` — select xAI model to use
+- `--format FORMAT` — output format (`plain`, `json`, `markdown`)
+- `--since DATE` — filter results after this date
+- `--until DATE` — filter results before this date
+
+## Command reference files
+
+Load the relevant reference file based on which command the user needs:
+
+- **Search** (search X posts by query): See [references/search.md](references/search.md)
+- **User** (browse user timelines): See [references/user.md](references/user.md)
+- **Thread** (retrieve and display threads): See [references/thread.md](references/thread.md)
+- **Trending** (discover trending topics): See [references/trending.md](references/trending.md)
+- **Web** (web search): See [references/web.md](references/web.md)
+- **Config** (configuration and model management): See [references/config.md](references/config.md)
+
+## Common patterns
+
+### Multi-step workflows
+
+When performing complex tasks (e.g., "find posts by a user about a topic"), chain commands:
+1. Search or browse user timeline to find relevant posts
+2. Retrieve a thread for full context if needed
+
+### Checking available models
+
+```bash
+xai models
+```
+
+### Quick search
+
+```bash
+xai search "query" --since 24h
+```

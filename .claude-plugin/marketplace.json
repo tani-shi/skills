@@ -15,6 +15,14 @@
       "skills": [
         "./skills/gogcli"
       ]
+    },
+    {
+      "name": "xai-cli",
+      "description": "Use the xai CLI to search X posts, browse user timelines, retrieve threads, discover trending topics, and perform web searches via the xAI API",
+      "source": "./",
+      "skills": [
+        "./skills/xai-cli"
+      ]
     }
   ]
 }

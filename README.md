@@ -31,3 +31,15 @@ Use the `gog` CLI to interact with Google Workspace services.
 - Google Contacts & People (search, create, update, directory)
 
 Requires [gogcli](https://github.com/steipete/gogcli) installed and authenticated.
+
+### xai-cli
+
+Use the `xai` CLI to search and browse X (Twitter) content and the web via the xAI API.
+
+- Search X posts (by query, user, date range, image filter)
+- User timelines (browse posts from specific users)
+- Threads (retrieve and summarize full threads)
+- Trending topics (global and by country/category)
+- Web search (with domain filtering)
+
+Requires [xai-cli](https://github.com/tani-shi/xai-cli) installed and `XAI_API_KEY` environment variable set.
