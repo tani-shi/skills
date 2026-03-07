@@ -32,14 +32,14 @@ uv tool install .
 
 - Default: human-readable text
 - `--format json` — JSON output (use for parsing structured data)
-- `--format markdown` — Markdown formatted output
+- `--format markdown` — Markdown formatted output (search command only)
 
 ## Common flags
 
-- `--model MODEL` — select xAI model to use
-- `--format FORMAT` — output format (`plain`, `json`, `markdown`)
-- `--since DATE` — filter results after this date
-- `--until DATE` — filter results before this date
+- `--format FORMAT` — output format (`text`, `json`; `markdown` supported by search)
+- `--no-stream` — disable streaming output
+- `--from DATE` — filter results after this date (search, user commands)
+- `--to DATE` — filter results before this date (search, user commands)
 
 ## Command reference files
 
@@ -69,5 +69,5 @@ xai models
 ### Quick search
 
 ```bash
-xai search "query" --since 24h
+xai search "query" --from 2026-03-06
 ```

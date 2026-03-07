@@ -3,15 +3,16 @@
 ## Browse user timeline
 
 ```bash
-xai user @<username> [--since DATE] [--until DATE] [--format FORMAT] [--model MODEL]
+xai user @<username> [query] [--from DATE] [--to DATE] [--format FORMAT] [--no-stream]
 ```
 
 Retrieves posts from the specified user's timeline.
 
-- `--since DATE` — only posts after this date
-- `--until DATE` — only posts before this date
-- `--format FORMAT` — output format (`plain`, `json`, `markdown`)
-- `--model MODEL` — xAI model to use
+- `query` — optional topic filter (positional argument)
+- `--from DATE` — only posts after this date (YYYY-MM-DD)
+- `--to DATE` — only posts before this date (YYYY-MM-DD)
+- `--format FORMAT` — output format (`text`, `json`)
+- `--no-stream` — disable streaming output
 
 ## Examples
 
@@ -19,9 +20,12 @@ Retrieves posts from the specified user's timeline.
 # Get recent posts from a user
 xai user @elonmusk
 
-# Get posts from last week
-xai user @xaboratories --since 7d
+# Get posts from a user about a specific topic
+xai user @elonmusk "AI announcements"
+
+# Get posts from a date range
+xai user @xaboratories --from 2026-02-28
 
 # Get user timeline as JSON
-xai user @anthropic --format json --since 2026-03-01
+xai user @anthropic --format json --from 2026-03-01
 ```

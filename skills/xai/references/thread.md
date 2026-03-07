@@ -3,14 +3,14 @@
 ## Retrieve a thread
 
 ```bash
-xai thread <URL> [--summarize] [--format FORMAT] [--model MODEL]
+xai thread <URL> [--summary] [--format FORMAT] [--no-stream]
 ```
 
 Retrieves and displays a full thread from a post URL.
 
-- `--summarize` — generate a summary of the thread
-- `--format FORMAT` — output format (`plain`, `json`, `markdown`)
-- `--model MODEL` — xAI model to use
+- `--summary` — show summary instead of full thread
+- `--format FORMAT` — output format (`text`, `json`)
+- `--no-stream` — disable streaming output
 
 ## Examples
 
@@ -19,8 +19,8 @@ Retrieves and displays a full thread from a post URL.
 xai thread https://x.com/user/status/1234567890
 
 # Retrieve and summarize a thread
-xai thread https://x.com/user/status/1234567890 --summarize
+xai thread https://x.com/user/status/1234567890 --summary
 
-# Get thread as markdown
-xai thread https://x.com/user/status/1234567890 --format markdown
+# Get thread as JSON
+xai thread https://x.com/user/status/1234567890 --format json
 ```

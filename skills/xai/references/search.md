@@ -3,34 +3,32 @@
 ## Search X posts
 
 ```bash
-xai search "<query>" [--since DATE] [--until DATE] [--from-users USER,...] \
-  [--to-users USER,...] [--exclude-from-users USER,...] \
-  [--has-image] [--format FORMAT] [--model MODEL]
+xai search "<query>" [--from DATE] [--to DATE] [--from-user USER]... \
+  [--exclude USER]... [--images] [--format FORMAT] [--no-stream]
 ```
 
 Searches X posts matching the given query.
 
-- `--since DATE` — only posts after this date
-- `--until DATE` — only posts before this date
-- `--from-users USER,...` — filter by post authors (comma-separated usernames)
-- `--to-users USER,...` — filter by reply targets (comma-separated usernames)
-- `--exclude-from-users USER,...` — exclude posts from these users
-- `--has-image` — only posts containing images
-- `--format FORMAT` — output format (`plain`, `json`, `markdown`)
-- `--model MODEL` — xAI model to use
+- `--from DATE` — only posts after this date (YYYY-MM-DD)
+- `--to DATE` — only posts before this date (YYYY-MM-DD)
+- `--from-user USER` — filter by post authors (repeat for multiple users)
+- `--exclude USER` — exclude posts from these users (repeat for multiple users)
+- `--images` — enable image understanding
+- `--format FORMAT` — output format (`text`, `json`, `markdown`)
+- `--no-stream` — disable streaming output
 
 ## Examples
 
 ```bash
 # Search for recent posts about a topic
-xai search "Claude AI" --since 24h
+xai search "Claude AI" --from 2026-03-06
 
 # Search posts from specific users
-xai search "announcement" --from-users elonmusk,xaboratories
+xai search "announcement" --from-user elonmusk --from-user xaboratories
 
-# Search with image filter
-xai search "infographic" --has-image --format json
+# Search with image understanding
+xai search "infographic" --images --format json
 
 # Search within a date range
-xai search "product launch" --since 2026-01-01 --until 2026-02-01
+xai search "product launch" --from 2026-01-01 --to 2026-02-01
 ```

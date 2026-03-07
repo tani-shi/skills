@@ -3,15 +3,15 @@
 ## Discover trending topics
 
 ```bash
-xai trending [--country CODE] [--category CATEGORY] [--format FORMAT] [--model MODEL]
+xai trending [topic] [--category CATEGORY] [--format FORMAT] [--no-stream]
 ```
 
 Shows currently trending topics on X.
 
-- `--country CODE` — country code to filter trends (e.g., `US`, `JP`, `GB`)
-- `--category CATEGORY` — topic category filter
-- `--format FORMAT` — output format (`plain`, `json`, `markdown`)
-- `--model MODEL` — xAI model to use
+- `topic` — optional topic for detailed trending posts (positional argument)
+- `--category CATEGORY` — topic category filter (tech, politics, sports, entertainment)
+- `--format FORMAT` — output format (`text`, `json`)
+- `--no-stream` — disable streaming output
 
 ## Examples
 
@@ -19,8 +19,8 @@ Shows currently trending topics on X.
 # Get global trending topics
 xai trending
 
-# Get trending topics in Japan
-xai trending --country JP
+# Get trending posts about a specific topic
+xai trending "AI"
 
 # Get trending in a specific category as JSON
 xai trending --category technology --format json
