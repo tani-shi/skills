@@ -1,5 +1,5 @@
 ---
-name: gogcli
+name: gog
 description: >
   Use the `gog` CLI to interact with Google Workspace services on the user's behalf.
   Supports Gmail (search, read, send, drafts, labels), Google Calendar (list, create, update, delete events),
@@ -8,7 +8,7 @@ description: >
   Google Contacts and People (search, create, update), and more.
   Trigger when the user asks to read/send email, check/create calendar events, manage Drive files,
   send Chat messages, manage tasks, interact with Classroom, look up contacts, or any Google Workspace operation.
-  Also trigger when the user mentions "gog", "gogcli", "Gmail", "Google Calendar", "Google Drive",
+  Also trigger when the user mentions "gog", "Gmail", "Google Calendar", "Google Drive",
   "Google Chat", "Google Tasks", "Google Classroom", "Google Contacts", or similar Google service names
   in the context of performing actions (not just discussing them).
 ---

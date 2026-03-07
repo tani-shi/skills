@@ -9,19 +9,19 @@
   },
   "plugins": [
     {
-      "name": "gogcli",
+      "name": "gog",
       "description": "Use the gog CLI to interact with Google Workspace services (Gmail, Calendar, Drive, Chat, Tasks, Classroom, Contacts)",
       "source": "./",
       "skills": [
-        "./skills/gogcli"
+        "./skills/gog"
       ]
     },
     {
-      "name": "xai-cli",
+      "name": "xai",
       "description": "Use the xai CLI to search X posts, browse user timelines, retrieve threads, discover trending topics, and perform web searches via the xAI API",
       "source": "./",
       "skills": [
-        "./skills/xai-cli"
+        "./skills/xai"
       ]
     }
   ]

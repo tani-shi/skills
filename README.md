@@ -13,12 +13,12 @@ Add the marketplace:
 Then install individual plugins:
 
 ```bash
-/plugin install gogcli@tani-shi-skills
+/plugin install gog@tani-shi-skills
 ```
 
 ## Plugins
 
-### gogcli
+### gog
 
 Use the `gog` CLI to interact with Google Workspace services.
 
@@ -32,7 +32,7 @@ Use the `gog` CLI to interact with Google Workspace services.
 
 Requires [gogcli](https://github.com/steipete/gogcli) installed and authenticated.
 
-### xai-cli
+### xai
 
 Use the `xai` CLI to search and browse X (Twitter) content and the web via the xAI API.
 

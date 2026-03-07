@@ -1,11 +1,11 @@
 ---
-name: xai-cli
+name: xai
 description: >
   Use the `xai` CLI to search X (Twitter) posts, browse user timelines, retrieve threads,
   discover trending topics, and perform web searches via the xAI API.
   Trigger when the user asks to search X posts, view user timelines, read threads,
   check trending topics, or perform web searches through xAI.
-  Also trigger when the user mentions "xai", "xai-cli", "X posts", "Twitter",
+  Also trigger when the user mentions "xai", "X posts", "Twitter",
   "trending on X", or similar terms in the context of performing actions.
 ---
 
