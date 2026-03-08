@@ -5,39 +5,19 @@
   },
   "metadata": {
     "description": "Custom skills for Claude Code",
-    "version": "2026.03.09"
+    "version": "2026.03.09.1"
   },
   "plugins": [
     {
-      "name": "gog",
-      "description": "Use the gog CLI to interact with Google Workspace services (Gmail, Calendar, Drive, Chat, Tasks, Classroom, Contacts)",
+      "name": "tani-shi-skills",
+      "description": "Custom skills by tani-shi",
       "source": "./",
+      "strict": false,
       "skills": [
-        "./skills/gog"
-      ]
-    },
-    {
-      "name": "xai",
-      "description": "Use the xai CLI to search X posts, browse user timelines, retrieve threads, discover trending topics, and perform web searches via the xAI API",
-      "source": "./",
-      "skills": [
+        "./skills/cli-inspector",
+        "./skills/fam",
+        "./skills/gog",
         "./skills/xai"
-      ]
-    },
-    {
-      "name": "cli-inspector",
-      "description": "Investigate CLI tools by discovering command trees via recursive --help execution and inspecting source repos",
-      "source": "./",
-      "skills": [
-        "./skills/cli-inspector"
-      ]
-    },
-    {
-      "name": "fam",
-      "description": "Use the fam CLI to manage and track financial assets across MoneyForward, Coincheck, and Binance",
-      "source": "./",
-      "skills": [
-        "./skills/fam"
       ]
     }
   ]
