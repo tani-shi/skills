@@ -138,23 +138,33 @@ def parse_arguments(lines: list[str]) -> list[dict]:
 
 def is_section_header(line: str) -> str | None:
     """Check if a line is a section header. Returns the section name or None."""
-    # "Commands:" or "Options:" (with optional leading whitespace, optional colon)
+    # Exact match for known section names (with optional leading whitespace, optional colon)
     m = re.match(
-        r"^\s*(commands|subcommands|available commands|options|flags|"
-        r"global options|global flags|arguments|args|positional arguments|usage)\s*:?\s*$",
+        r"^\s*(commands|subcommands|available commands|all commands|"
+        r"options|flags|global options|global flags|"
+        r"arguments|args|positional arguments|usage)\s*:?\s*$",
         line,
         re.IGNORECASE,
     )
     if m:
         return m.group(1).strip().lower()
+
+    # Fuzzy match for headers containing "commands" (e.g., "CORE COMMANDS", "ADDITIONAL COMMANDS")
+    m = re.match(r"^([A-Z][A-Z\s]*COMMANDS)\s*$", line)
+    if m:
+        return "commands"
+
     return None
 
 
-def extract_subcommand_names(help_text: str) -> list[str]:
+def extract_subcommand_names(help_text: str, cli_name: str = "") -> list[str]:
     """Extract subcommand names from help text."""
     subcommands = []
     in_commands_section = False
-    command_section_names = {"commands", "subcommands", "available commands"}
+    command_section_names = {"commands", "subcommands", "available commands", "all commands"}
+
+    # Collect commands found outside any recognized section (for fallback)
+    fallback_commands = []
 
     for line in help_text.splitlines():
         header = is_section_header(line)
@@ -165,6 +175,22 @@ def extract_subcommand_names(help_text: str) -> list[str]:
         if in_commands_section:
             stripped = line.strip()
             if not stripped:
+                continue
+
+            # npm style: comma-separated list "    access, adduser, audit, ..."
+            if ", " in stripped and not stripped.startswith("-"):
+                names = [n.strip() for n in stripped.split(",") if n.strip()]
+                for name in names:
+                    if re.match(r"^[\w][\w-]*$", name) and name.lower() not in ("help", "completion"):
+                        subcommands.append(name)
+                continue
+
+            # gh style: "  name:   description" (colon after command name)
+            m_colon = re.match(r"^\s{2,}([\w][\w-]*):\s+(.+)$", line)
+            if m_colon:
+                cmd_name = m_colon.group(1)
+                if cmd_name.lower() not in ("help", "completion"):
+                    subcommands.append(cmd_name)
                 continue
 
             # Kong/cobra format: "  cmd (aliases) <args> [flags]"
@@ -187,6 +213,34 @@ def extract_subcommand_names(help_text: str) -> list[str]:
             # Skip description lines (4+ leading spaces) and other continuation
             if line.startswith("    "):
                 continue
+        else:
+            # Fallback: git-style "   cmd      description" outside any section
+            m = re.match(r"^\s{2,}([\w][\w-]*)\s{2,}(\S.+)$", line)
+            if m:
+                cmd_name = m.group(1)
+                if cmd_name.lower() not in ("help", "completion"):
+                    fallback_commands.append(cmd_name)
+
+            # brew-style: "  cli subcmd [ARGS...]" (usage examples with CLI prefix)
+            if cli_name:
+                m_usage = re.match(
+                    r"^\s{2,}" + re.escape(cli_name) + r"\s+([\w][\w-]*)",
+                    line,
+                )
+                if m_usage:
+                    cmd_name = m_usage.group(1)
+                    if cmd_name.lower() not in ("help", "completion"):
+                        fallback_commands.append(cmd_name)
+
+    # Use fallback commands if no section-based commands were found
+    if not subcommands and fallback_commands:
+        # Deduplicate while preserving order
+        seen = set()
+        subcommands = []
+        for cmd in fallback_commands:
+            if cmd not in seen:
+                seen.add(cmd)
+                subcommands.append(cmd)
 
     return subcommands
 
@@ -276,7 +330,7 @@ def discover_command(
 
     # Discover subcommands if within depth limit
     if depth < max_depth:
-        subcmd_names = extract_subcommand_names(help_text)
+        subcmd_names = extract_subcommand_names(help_text, cli_parts[0])
         for name in subcmd_names:
             child = discover_command(
                 cli_parts + [name], help_flag, max_depth, depth + 1

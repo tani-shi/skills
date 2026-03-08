@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Custom skills for Claude Code",
-    "version": "2026.03.08.1"
+    "version": "2026.03.09"
   },
   "plugins": [
     {
@@ -25,11 +25,11 @@
       ]
     },
     {
-      "name": "cli-skill-creator",
-      "description": "Automate creating Claude Code skills for CLI tools by discovering commands via recursive --help execution and reading source code",
+      "name": "cli-inspector",
+      "description": "Investigate CLI tools by discovering command trees via recursive --help execution and inspecting source repos",
       "source": "./",
       "skills": [
-        "./skills/cli-skill-creator"
+        "./skills/cli-inspector"
       ]
     },
     {
