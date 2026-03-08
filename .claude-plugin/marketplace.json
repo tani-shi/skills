@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Custom skills for Claude Code",
-    "version": "2026.03.08"
+    "version": "2026.03.08.1"
   },
   "plugins": [
     {
@@ -30,6 +30,14 @@
       "source": "./",
       "skills": [
         "./skills/cli-skill-creator"
+      ]
+    },
+    {
+      "name": "fam",
+      "description": "Use the fam CLI to manage and track financial assets across MoneyForward, Coincheck, and Binance",
+      "source": "./",
+      "skills": [
+        "./skills/fam"
       ]
     }
   ]
