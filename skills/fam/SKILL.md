@@ -2,10 +2,13 @@
 name: fam
 description: >
   Use the `fam` CLI to manage and track financial assets across MoneyForward, Coincheck, and Binance.
-  Trigger when the user asks to fetch asset data, view portfolio snapshots, export/import financial data,
-  configure financial services, or check asset balances.
-  Also trigger when the user mentions "fam", "financial assets", "MoneyForward", "Coincheck", "Binance",
-  "portfolio", or similar terms in the context of performing actions.
+  Use when the user wants to check asset balances, view portfolio snapshots, fetch financial data,
+  export/import asset records, or configure financial service connections.
+  Trigger on: "fam", "financial assets", "MoneyForward", "Coincheck", "Binance", "portfolio",
+  "asset balance", "how much do I have", "check my assets", "show my portfolio",
+  "fetch assets", "export financial data", or any mention of checking, viewing,
+  or managing financial holdings or crypto balances.
+  Do NOT trigger when the user is just discussing finance conceptually without wanting to perform an action.
 ---
 
 # fam — Financial Asset Management CLI

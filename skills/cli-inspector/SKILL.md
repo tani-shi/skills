@@ -1,9 +1,13 @@
 ---
 name: cli-inspector
 description: >
-  Investigate CLI tools by discovering their command trees and inspecting their source repos.
-  Trigger when the user asks to investigate a CLI, discover CLI commands, inspect a CLI repo,
+  Investigate CLI tools by discovering their full command trees and inspecting their source repos.
+  Use when the user wants to understand what a CLI tool can do, explore its subcommands,
+  see its command hierarchy, or learn how a CLI works internally.
+  Trigger on: "what commands does X have", "show me the subcommands", "how does this CLI work",
+  "explore this CLI", "what can X do", discovering available commands of any CLI tool,
   or mentions "cli-inspector".
+  Also trigger when the user provides a CLI tool name and wants to know its capabilities.
 ---
 
 # cli-inspector — Investigate CLI Tools

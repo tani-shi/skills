@@ -1,6 +1,16 @@
 ---
 name: scrapling
-description: Scrape web pages using Scrapling with anti-bot bypass (like Cloudflare Turnstile), stealth headless browsing, spiders framework, adaptive scraping, and JavaScript rendering. Use when asked to scrape, crawl, or extract data from websites; web_fetch fails; the site has anti-bot protections; write Python code to scrape/crawl; or write spiders.
+description: >
+  Scrape web pages using Scrapling with anti-bot bypass (like Cloudflare Turnstile),
+  stealth headless browsing, spiders framework, adaptive scraping, and JavaScript rendering.
+  Use when the user wants to scrape, crawl, or extract data from websites.
+  Also use when web_fetch fails or returns blocked responses, the target site has anti-bot protections,
+  or the user wants to write Python scraping/crawling code.
+  Trigger on: "scrape", "crawl", "web scraping", "extract data from website",
+  "Scrapling", "spider", "bypass Cloudflare", "headless browser scraping",
+  "scrape this site", "get data from this page", or any request to programmatically
+  extract content from web pages.
+  Do NOT trigger for simple URL fetching that web_fetch can handle.
 version: 0.4.1
 license: Complete terms in LICENSE.txt
 ---

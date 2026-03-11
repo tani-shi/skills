@@ -3,10 +3,13 @@ name: xai
 description: >
   Use the `xai` CLI to search X (Twitter) posts, browse user timelines, retrieve threads,
   discover trending topics, and perform web searches via the xAI API.
-  Trigger when the user asks to search X posts, view user timelines, read threads,
-  check trending topics, or perform web searches through xAI.
-  Also trigger when the user mentions "xai", "X posts", "Twitter",
-  "trending on X", or similar terms in the context of performing actions.
+  Use when the user wants to search for posts on X/Twitter, see what someone tweeted,
+  read a thread, check what's trending, or do a web search.
+  Trigger on: "xai", "X", "Twitter", "tweet", "posts on X", "trending",
+  "search X", "search Twitter", "what's trending", "check someone's timeline",
+  "read this thread", "web search via xai", "find tweets about",
+  or any request to search, browse, or retrieve content from X/Twitter.
+  Do NOT trigger when the user mentions "X" in a non-Twitter context (e.g., "variable X").
 ---
 
 # xai-cli — X (Twitter) & Web Search CLI
