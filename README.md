@@ -38,6 +38,10 @@ Use the `gog` CLI to interact with Google Workspace services.
 - Google Classroom (courses, students, coursework, submissions)
 - Google Contacts & People (search, create, update, directory)
 
+### version-hook
+
+Set up a git pre-commit hook that auto-updates version strings using date-based versioning (`yyyy.mm.dd`). Analyzes the project structure to identify version files and generates a cross-platform hook script that coexists with existing hooks. Supports monorepos, multiple languages/ecosystems, and hook frameworks (husky, lefthook, etc.).
+
 ### xai
 
 Use the `xai` CLI to search and browse X (Twitter) content and the web via the xAI API.
