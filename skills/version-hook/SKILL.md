@@ -58,6 +58,58 @@ Wait for user confirmation before proceeding.
 
 Generate the pre-commit hook script and install it. Follow the hook generation rules below.
 
+### Step 5: Verify (required)
+
+After installing the hook, run these verification substeps. Do NOT skip this step.
+
+#### 5a. Syntax & quality check
+
+Run `shellcheck <hook-file>` to detect syntax errors and semantic issues. If shellcheck is not available, fall back to `sh -n <hook-file>` for basic syntax validation. Fix any errors before proceeding.
+
+#### 5b. Version computation test
+
+Source the hook file to extract `__vh_compute_version`, then verify with three test cases:
+
+```sh
+# Test 1: Past date → today's date
+result=$(__vh_compute_version "2020.01.01")
+expected=$(date +"%Y.%m.%d")
+[ "$result" = "$expected" ] && echo "PASS" || echo "FAIL: got $result, expected $expected"
+
+# Test 2: Today's date → today.1
+result=$(__vh_compute_version "$(date +%Y.%m.%d)")
+expected="$(date +%Y.%m.%d).1"
+[ "$result" = "$expected" ] && echo "PASS" || echo "FAIL: got $result, expected $expected"
+
+# Test 3: today.3 → today.4
+result=$(__vh_compute_version "$(date +%Y.%m.%d).3")
+expected="$(date +%Y.%m.%d).4"
+[ "$result" = "$expected" ] && echo "PASS" || echo "FAIL: got $result, expected $expected"
+```
+
+All three must pass. If any fails, fix the `__vh_compute_version` function and re-test.
+
+#### 5c. sed pattern dry-run
+
+For each target version file, run the sed command in dry-run mode (output to stdout, do not modify the file) and verify the version string is actually replaced. For example:
+
+```sh
+# For a file using: s/"version": *"[^"]*"/"version": "TEST"/
+sed 's/"version": *"[^"]*"/"version": "TEST"/' package.json | grep '"version"'
+# Confirm the output shows "version": "TEST"
+```
+
+If the pattern does not produce a replacement, fix the sed pattern in the hook before proceeding.
+
+#### 5d. E2E commit test
+
+Perform a real commit to verify the hook works end-to-end:
+
+1. Make a trivial change (e.g., add a blank line to a tracked file)
+2. Stage and commit
+3. Verify the version file(s) were updated with today's date
+4. Present the result to the user, and inform them they can undo the test commit with `git reset HEAD~1`
+
 ## Hook Generation Rules
 
 ### Structure
@@ -112,6 +164,7 @@ The generated hook MUST follow this structure:
    - **pre-commit (Python)**: Add as a `local` hook in `.pre-commit-config.yaml`
    - Fall back to `.git/hooks/pre-commit` if no framework is detected
 9. **Make executable**: Run `chmod +x` on the hook file after writing.
+10. **Sourceable `__vh_compute_version`**: Define `__vh_compute_version` so it can be sourced and called independently for testing. Do not nest it inside constructs that prevent external invocation (e.g., avoid inlining it within a pipeline or command substitution that hides it).
 
 ## Version File Patterns
 
@@ -220,4 +273,7 @@ When a monorepo is detected:
 - [ ] Existing hook/framework detected
 - [ ] Hook generated following all rules
 - [ ] Hook installed and made executable
-- [ ] Tested with a dry run (`git stash && git stash pop` or similar)
+- [ ] Verify 5a: shellcheck (or sh -n) passes with no errors
+- [ ] Verify 5b: __vh_compute_version returns correct results for all 3 test cases
+- [ ] Verify 5c: sed pattern actually replaces the version in each target file (dry-run)
+- [ ] Verify 5d: test commit proves version was updated end-to-end
