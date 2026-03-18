@@ -14,17 +14,12 @@ Some skills depend on external CLI tools. Install and configure the ones you nee
 
 - [gogcli](https://github.com/steipete/gogcli) — for the **gog** skill. Install and authenticate before use.
 - [xai-cli](https://github.com/tani-shi/xai-cli) — for the **xai** skill. Install and set the `XAI_API_KEY` environment variable.
-- [fam](https://github.com/tani-shi/fam) — for the **fam** skill. Install and authenticate before use.
 
 ## Skills
 
 ### cli-inspector
 
 Investigate CLI tools by discovering their full command trees and inspecting source repositories.
-
-### fam
-
-Use the `fam` CLI to manage and track financial assets across MoneyForward, Coincheck, and Binance.
 
 ### gog
 
