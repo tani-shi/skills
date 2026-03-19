@@ -16,10 +16,6 @@ Some skills depend on external CLI tools. Install and configure the ones you nee
 
 ## Skills
 
-### cli-inspector
-
-Investigate CLI tools by discovering their full command trees and inspecting source repositories.
-
 ### gog
 
 Use the `gog` CLI to interact with Google Workspace services.
